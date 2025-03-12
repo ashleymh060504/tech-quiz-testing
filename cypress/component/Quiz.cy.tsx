@@ -1,12 +1,13 @@
-import Quiz from '../../client/src/components/Quiz.tsx'; 
+import Quiz from '../../client/src/components/Quiz'; 
 import { mount } from 'cypress/react18';
 import '@testing-library/cypress/add-commands';
+import 'cypress';
 
 describe('<Quiz />', () => {
   beforeEach(() => {
     cy.intercept('GET', '/api/questions/random', {
       statusCode: 200,
-      fixture: 'mockQuestions.json',
+      fixture: 'questions.json',
     })
   })
 
@@ -21,7 +22,11 @@ describe('<Quiz />', () => {
     cy.get(".alert").eq(0).should('contain.text', 'str')
     cy.get(".alert").eq(1).should('contain.text', 'tuple')
     cy.get(".alert").eq(2).should('contain.text', 'list')
-    cy.get(".alert").eq(3).should('contain.text', 'int')
+      cy.get(".alert").eq(3).should('contain.text', 'int')
+    })
+
+  it('should have an h2 element that has the completed quiz announcement', () => {
+    mount(<Quiz />);
 
     cy.get("h2").contains("Quiz Completed").should('be.visible')
     cy.get(".alert-success").contains("Your score:").should('be.visible')

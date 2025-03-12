@@ -7,7 +7,7 @@ describe('Quiz Cycle', () => {
     beforeEach(() => {
       cy.intercept('GET', '/api/questions/random', {
         statusCode: 200,
-        fixture: 'mockQuestions.json',
+        fixture: 'questions.json',
       })
 
       cy.visit('/');
@@ -19,14 +19,12 @@ describe('Quiz Cycle', () => {
 
     it('should start the quiz when the Start Quiz button is clicked', () => {
       cy.get('button').contains('Start Quiz').click();
-      
       cy.get('h2').contains('What is the output of print(2 ** 3)?').should('exist'); 
     });
 
     it('should show the next question after clicking on an answer', () => {
         cy.get('button').contains('Start Quiz').click();
         cy.get('button').contains('1').click();
-        
         cy.get('h2').contains('Which of the following is a mutable data type in Python?').should('exist'); 
     });
 
