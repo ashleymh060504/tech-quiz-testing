@@ -1,6 +1,5 @@
-import { cy } from 'cypress';
+import 'cypress';
 import '@testing-library/cypress/add-commands';
-import Quiz from '../../client/src/components/Quiz';
 
 describe('Quiz Cycle', () => {
     beforeEach(() => {
@@ -22,13 +21,18 @@ describe('Quiz Cycle', () => {
       cy.get('h2').contains('What is the output of print(2 ** 3)?').should('exist'); 
     });
 
-    it('should show the 2nd question after clicking on an answer', () => {
+    it('should show the next question after clicking on an answer', () => {
         cy.get('button').contains('Start Quiz').click();
         cy.get('button').contains('1').click();
         
         cy.get('h2').contains('Which of the following is a mutable data type in Python?').should('exist'); 
     });
 
+    it('should show the quiz completion message after answering all questions', () => {
+        cy.get('button').contains('Take New Quiz').should('exist');
+    });
 
-
+    it('should start a new quiz when the Take New Quiz button is clicked', () => {
+        cy.get('button').contains('Start Quiz').click();
+    });
 });

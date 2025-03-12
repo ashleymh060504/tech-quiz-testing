@@ -1,4 +1,4 @@
-import Quiz from '../../client/src/components/Quiz'; 
+import Quiz from '../../client/src/components/Quiz.tsx'; 
 import { mount } from 'cypress/react18';
 import '@testing-library/cypress/add-commands';
 
@@ -12,6 +12,7 @@ describe('<Quiz />', () => {
 
   it('should have an h2 element that has the question text', () => {
     mount(<Quiz />);
+
     cy.get("button").click()
     cy.get("h2").contains("Which of the following is a mutable data type in Python?").should('be.visible')
     cy.get("button").eq(0).should('contain.text', '1')
