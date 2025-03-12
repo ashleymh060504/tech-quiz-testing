@@ -1,6 +1,8 @@
 import 'cypress';
 import '@testing-library/cypress/add-commands';
 
+window.process = { env: {} };
+
 describe('Quiz Cycle', () => {
     beforeEach(() => {
       cy.intercept('GET', '/api/questions/random', {

@@ -1,6 +1,7 @@
 {
   "extends": "../tsconfig.json",
   "compilerOptions": {
+    "resolveJsonModule": true,
     "composite": true /* Enable project references. */,
     /* Modules */
     "rootDir": "src" /* Specify the root folder within your source files. */,
