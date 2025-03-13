@@ -6,19 +6,16 @@ export default defineConfig({
     devServer: {
       framework: 'react',
       bundler: 'vite',
-      // viteConfig: customViteConfig,
+      viteConfig: customViteConfig,
     },
     specPattern: "cypress/component/**/*.cy.{js,ts,jsx,tsx}",
   },
 
   e2e: {
-    baseUrl: 'http://localhost:3001',
+    supportFile: false,
+    baseUrl: 'http://localhost:3000',
     setupNodeEvents(on, config) {
-      config.env = {
-        ...process.env
-      };
-      return config;
-      }
+      // implement node event listeners here
     },
   },
-);
+});

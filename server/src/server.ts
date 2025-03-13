@@ -6,7 +6,7 @@ import routes from './routes/index.js';
 
 await db();
 
-const PORT = process.env.PORT || 3001;
+const PORT = process.env.PORT || 3000;
 const app = express();
 
 app.use(express.urlencoded({ extended: true }));
